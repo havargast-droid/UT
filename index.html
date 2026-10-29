@@ -1,249 +1,75 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>El reto del investigador</title>
-  <link rel="icon" href="assets/logo-ut.png">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Investigadores en acción · Formación 1</title>
+<meta name="description" content="Dale play a tu curiosidad. Sala de cómputo con juegos para aprender el proceso de investigación.">
+<link rel="icon" href="assets/logo-ut.png">
+<link rel="stylesheet" href="css/hub.css">
 </head>
 <body>
-<div class="doodles" id="doodles" aria-hidden="true"></div>
-<div id="confeti" aria-hidden="true"></div>
+<div class="fondo" aria-hidden="true"></div>
 
-<div class="shell">
-
-  <!-- Barra superior: logos + micro-etiquetas -->
-  <div class="top">
-    <div class="top-left">
-      <img class="logo" data-logo="logoConocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
-      <nav class="micro-nav" aria-label="Contexto">
-        <span>INVESTIGACIÓN I</span><i></i><span>DESAFÍO ACADÉMICO</span><i></i><span>MODO AULA</span>
-      </nav>
-    </div>
-    <div class="top-right">
-      <span class="micro coords">4° 26′ N · 75° 14′ O</span>
-      <span class="micro place">IBAGUÉ, TOLIMA <b class="dot" aria-hidden="true"></b></span>
-      <img class="logo" data-logo="logoIdead" alt="IDEAD en los territorios">
-    </div>
+<header class="hud">
+  <div class="hud-logos">
+    <img src="assets/logo-conocimiento.webp" alt="Universidad del Tolima · Conocimiento que transforma" class="l-con" width="900" height="258" decoding="async" fetchpriority="high">
+    <img src="assets/logo-idead.webp" alt="IDEAD en los territorios" class="l-ide" width="500" height="304" decoding="async">
   </div>
+  <div class="titulo">
+    <span class="etiqueta" id="etiqueta">Formación 1</span>
+    <h1 id="titulo">Investigadores en acción</h1>
+    <p class="slogan" id="slogan">Dale play a tu curiosidad</p>
+  </div>
+  <div class="hud-prog" aria-live="polite">
+    <span class="mini">Progreso</span>
+    <span class="barra" id="barra"></span>
+    <span class="num" id="progNum">0/3</span>
+  </div>
+</header>
 
-  <!-- Encabezado editorial -->
-  <header class="hero">
-    <div class="hero-text">
-      <div class="eyebrow">CINCO ETAPAS · LABORATORIO FINAL</div>
-      <h1 id="titulo" aria-label="El reto del investigador">
-        <span class="h-line" aria-hidden="true"><span class="h-in" data-letras>EL RETO</span></span>
-        <span class="h-line h-mid" aria-hidden="true"><span class="chip-del">DEL</span></span>
-        <span class="h-line" aria-hidden="true"><span class="h-in" data-letras data-inicio="7">INVESTIGADOR</span></span>
-      </h1>
-      <p>Responde <span data-total>8</span> preguntas, supera cinco etapas y el laboratorio final, y ordena las pistas para revelar el proceso completo de investigación.</p>
-      <p class="margin-note">Toda gran investigación empieza con una buena pregunta.</p>
-    </div>
+<main class="escenario">
+  <div class="escena" id="escena">
+    <canvas id="sala" width="320" height="240" role="img" aria-label="Sala de cómputo con dos computadores y una máquina de arcade"></canvas>
+    <div id="zonas"></div>
+    <div class="burbuja" id="burbuja" role="status"><span id="burbujaTxt"></span></div>
+  </div>
+</main>
 
-    <figure class="sketch" aria-hidden="true">
-      <svg viewBox="0 0 560 420" xmlns="http://www.w3.org/2000/svg" role="img">
-        <defs>
-          <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="n"/>
-            <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
-          </filter>
-          <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
-            <line x1="0" y1="0" x2="0" y2="7" stroke="#203655" stroke-width="1.1" opacity=".45"/>
-          </pattern>
-        </defs>
-
-        <g stroke="#203655" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
-
-          <!-- sol / idea -->
-          <g class="a-in" style="--d:.2s">
-            <g class="sun-rays" stroke-width="2.4">
-              <path d="M470 24v-11"/>
-              <path d="M470 24v-11" transform="rotate(45 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(90 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(135 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(180 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(225 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(270 470 78)"/>
-              <path d="M470 24v-11" transform="rotate(315 470 78)"/>
-            </g>
-            <circle class="sun-ring" cx="470" cy="78" r="42" stroke-dasharray="3 7" stroke-width="1.8"/>
-            <circle class="sun-core" cx="470" cy="78" r="27" fill="#E23C48"/>
-          </g>
-
-          <!-- mesa -->
-          <g class="a-in" style="--d:.3s">
-            <g filter="url(#rough)">
-              <path d="M18 352 Q 200 344 360 350 T 544 348"/>
-              <path d="M30 362l-12 14M70 360l-12 16M110 358l-12 16M150 358l-12 16M190 357l-12 16M230 357l-12 16M270 357l-12 16M310 357l-12 16M350 358l-12 16M390 358l-12 16M430 358l-12 16M470 358l-12 16M510 358l-12 16" stroke-width="1.4" opacity=".5"/>
-            </g>
-          </g>
-
-          <!-- libros: caen y se apilan -->
-          <g class="a-drop" style="--d:.5s"><g filter="url(#rough)">
-            <path d="M38 350v-34h150v34z" fill="#E99A99"/>
-            <path d="M38 350v-34h150v34z" fill="url(#hatch)" stroke="none"/>
-            <path d="M60 316v34M48 333h126" stroke-width="1.5"/>
-          </g></g>
-          <g class="a-drop" style="--d:.75s"><g filter="url(#rough)">
-            <path d="M52 316v-30h126v30z" fill="#A7D6D8"/>
-            <path d="M168 286v30M62 301h104" stroke-width="1.5"/>
-          </g></g>
-          <g class="a-drop" style="--d:1s"><g filter="url(#rough)">
-            <path d="M66 286v-28h96v28z" fill="#F4EBBF"/>
-            <path d="M82 286v-28" stroke-width="1.5"/>
-          </g></g>
-
-          <!-- pieza de rompecabezas flotando -->
-          <g class="a-in" style="--d:1.15s">
-            <g class="float-piece"><g filter="url(#rough)">
-              <g transform="rotate(-14 112 170)">
-                <path d="M82 140h22a14 14 0 1 1 28 0h22v22a14 14 0 1 1 0 28v22h-72z" fill="#E99A99"/>
-                <path d="M92 150h8" stroke-width="1.8"/>
-              </g>
-            </g></g>
-          </g>
-
-          <!-- microscopio -->
-          <g class="a-in" style="--d:.6s">
-            <g filter="url(#rough)">
-              <path d="M248 350v-18h138v18z" fill="#F4EBBF"/>
-              <path d="M248 332h138" stroke-width="1.6"/>
-              <path d="M360 332c52-6 60-96 8-146l-26 24c30 30 26 76-22 84z" fill="#A7D6D8"/>
-            </g>
-            <g class="tube-wobble"><g filter="url(#rough)">
-              <g transform="rotate(-24 300 150)">
-                <rect x="282" y="78" width="38" height="118" rx="8" fill="#FDFAE9"/>
-                <rect x="288" y="56" width="26" height="24" rx="5" fill="#203655"/>
-                <rect x="290" y="196" width="22" height="30" rx="4" fill="#A7D6D8"/>
-                <path d="M282 110h38M282 140h38" stroke-width="1.6"/>
-              </g>
-            </g></g>
-            <g filter="url(#rough)">
-              <rect x="262" y="262" width="100" height="12" rx="4" fill="#F4EBBF"/>
-              <path d="M296 262v-8h32v8" stroke-width="1.8"/>
-            </g>
-            <circle class="cell" cx="312" cy="249" r="3.2" fill="#E23C48" stroke="none"/>
-            <circle cx="324" cy="251" r="2.2" fill="#203655" stroke="none"/>
-          </g>
-
-          <!-- matraz -->
-          <g class="a-in" style="--d:.85s">
-            <g filter="url(#rough)">
-              <path d="M470 232h28v44l38 72h-104l38-72z" fill="#FDFAE9"/>
-              <path d="M450 322c14-8 26 6 42-2s28-4 40 4l10 22h-100z" fill="#E99A99" stroke="none" opacity=".95"/>
-              <path d="M470 232h28" stroke-width="3.2"/>
-              <path d="M458 340c14-8 26 6 42-2s26-4 36 4" stroke-width="1.8"/>
-            </g>
-            <circle class="bub" cx="486" cy="318" r="5" stroke-width="1.8" style="--bd:0s"/>
-            <circle class="bub" cx="503" cy="322" r="3.4" stroke-width="1.6" style="--bd:.9s"/>
-            <circle class="bub" cx="476" cy="326" r="2.6" stroke-width="1.6" style="--bd:1.7s"/>
-            <circle class="bub" cx="494" cy="312" r="3" stroke-width="1.6" style="--bd:2.4s"/>
-          </g>
-
-          <!-- flechas guía animadas -->
-          <g class="a-in" style="--d:1.3s">
-            <path class="march" d="M430 96C 400 120 372 118 352 102" stroke-dasharray="4 6" stroke-width="1.8"/>
-            <path d="M352 102l12 2M352 102l3 11" stroke-width="1.8"/>
-            <path class="march" d="M150 262C 190 210 228 190 262 188" stroke-dasharray="4 6" stroke-width="1.8"/>
-            <path d="M262 188l-11-5M262 188l-9 9" stroke-width="1.8"/>
-          </g>
-        </g>
-
-        <!-- anotaciones -->
-        <g font-family="DM Mono, ui-monospace, monospace" font-size="11" fill="#203655" letter-spacing=".6">
-          <g class="a-in" style="--d:1.5s"><text x="540" y="168" text-anchor="end">HIPÓTESIS</text><text x="540" y="182" text-anchor="end" fill="#4A5F7C" font-size="9.5">¿qué se investigará?</text></g>
-          <g class="a-in" style="--d:1.65s"><text x="40" y="236">PIEZA 01</text><text x="40" y="250" fill="#4A5F7C" font-size="9.5">una pista por etapa</text></g>
-          <g class="a-in" style="--d:1.8s"><text x="248" y="392">EVIDENCIA</text><text x="440" y="392" fill="#4A5F7C" font-size="9.5">LAB · CASO 03</text></g>
-        </g>
-      </svg>
-    </figure>
-  </header>
-
-  <!-- Pantalla de inicio -->
-  <section id="start" class="panel startscreen">
-    <div class="big-icon">🏆 🧩</div>
-    <h2>¿Aceptas el reto?</h2>
-    <p>Cada etapa tiene una pregunta que, al responderla, revela una pieza del rompecabezas. Después resolverás los casos del laboratorio de decisiones metodológicas y ordenarás las pistas. Las preguntas se sortean y cambian en cada partida.</p>
-    <button class="primary" id="btnBegin">COMENZAR EL RETO →</button>
+<footer class="paneles">
+  <section class="panel proceso">
+    <h2>El proceso</h2>
+    <ol id="proceso"></ol>
   </section>
+  <section class="panel lista">
+    <h2>Estaciones de juego</h2>
+    <ul id="lista"></ul>
+  </section>
+  <section class="panel detalle" id="detalle" aria-live="polite">
+    <h2 id="dTipo"></h2>
+    <p class="d-nombre" id="dNombre"></p>
+    <p class="d-desc" id="dDesc"></p>
+    <div class="chips" id="dChips"></div>
+    <a class="jugar" id="dJugar" href="#">JUGAR</a>
+  </section>
+</footer>
 
-  <!-- Juego -->
-  <div id="game" class="layout hide">
-    <main class="panel">
-      <div class="stage-row" id="stageRow"></div>
-      <div class="money"><span id="levelLabel">ETAPA 1 DE 5</span><span id="questionLabel">Pregunta 1 de 8</span></div>
-      <div class="progress"><span id="progressBar"></span></div>
-
-      <div id="quiz">
-        <div class="qnum" id="qtopic">PLANTEAMIENTO DEL PROBLEMA</div>
-        <div class="question-instruction" id="questionInstruction"></div>
-        <div class="question" id="question"></div>
-        <div class="answers" id="answers"></div>
-        <div class="answer-status" id="answerStatus" aria-live="polite"></div>
-        <button class="secondary feedback-toggle" id="feedbackToggleBtn" aria-expanded="false">Mostrar retroalimentación</button>
-        <div class="feedback" id="feedback" aria-live="polite"></div>
-        <div class="controls">
-          <button class="primary" id="continueBtn" disabled>CONTINUAR →</button>
-          <button class="secondary" data-restart>Reiniciar juego</button>
-        </div>
-      </div>
-
-      <div id="stageWin" class="endscreen hide">
-        <div class="big-icon">🧩✨</div>
-        <h2 id="winTitle">¡Etapa superada!</h2>
-        <p id="winText"></p>
-        <div class="win-piece" id="winPiece"></div>
-        <button class="primary" id="btnNextStage">Siguiente etapa →</button>
-      </div>
-
-      <div id="labIntro" class="endscreen hide">
-        <div class="big-icon">🧪</div>
-        <h2>Laboratorio de decisiones metodológicas</h2>
-        <p>Has completado las cinco etapas. Ahora aplica lo aprendido a casos de la Universidad del Tolima: docencia y aprendizaje, deserción estudiantil, y transporte y permanencia.</p>
-        <div class="win-piece" id="labPiece"></div>
-        <button class="primary" id="btnBeginLab">Comenzar el laboratorio →</button>
-      </div>
-
-      <div id="finalWin" class="endscreen hide">
-        <div class="big-icon">🏆</div>
-        <h2>¡Investigación completada!</h2>
-        <p>Terminaste las <span data-total>8</span> preguntas. Ahora organiza las cinco pistas en el orden correcto para revelar la imagen final.</p>
-        <button class="primary" data-restart>Jugar de nuevo</button>
-      </div>
-    </main>
-
-    <aside class="panel">
-      <div class="side-title"><h2>Tu rompecabezas</h2><span class="tag" id="pieceCount">0 / 5 piezas</span></div>
-      <p class="small" id="puzzleInstruction">Las piezas están mezcladas y muestran únicamente el reverso: cada una guarda una pista. Supera las etapas para descubrirlas todas.</p>
-      <div class="puzzle" id="puzzle" aria-label="Piezas del rompecabezas desordenadas"></div>
-      <div class="puzzle-caption"><span>PISTAS DESCUBIERTAS</span><span id="puzzleStatus">0 de 5</span></div>
-      <div class="puzzle-tools">
-        <button class="primary" id="checkOrderBtn" disabled>Comprobar orden</button>
-        <button class="secondary" id="shuffleBtn" disabled>Mezclar piezas</button>
-      </div>
-      <div class="puzzle-message" id="puzzleMessage" aria-live="polite"></div>
-
-      <figure class="final-image" id="finalImage">
-        <img id="muralImg" alt="Infografía completa: El proceso de investigación">
-        <figcaption>¡Rompecabezas completo! · EL PROCESO DE INVESTIGACIÓN</figcaption>
-      </figure>
-
-      <div class="reveal" id="reveal">
-        <strong>¡Misterio resuelto!</strong>
-        <p class="small">Investigar es conectar preguntas, objetivos, conocimiento, métodos y evidencias para comprender un problema y generar conclusiones.</p>
-      </div>
-    </aside>
-  </div>
-
-  <div class="foot">
-    <img data-logo="logoConocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
-    <img data-logo="logoIdead" alt="IDEAD en los territorios">
-    <span>El rompecabezas científico · Ingeniería de Sistemas · Universidad del Tolima</span>
+<!-- Ventana emergente: los juegos se abren aquí, como una ventana de navegador -->
+<div class="ventana-fondo" id="ventanaFondo" hidden>
+  <div class="ventana" id="ventana" role="dialog" aria-modal="true" aria-labelledby="ventanaTitulo">
+    <div class="v-barra">
+      <span class="v-puntos" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="v-url" id="ventanaTitulo">investigadores-en-accion</span>
+      <button type="button" class="v-cerrar" id="ventanaCerrar" aria-label="Cerrar ventana y volver a la sala">&#10005; <span>CERRAR</span></button>
+    </div>
+    <div class="v-cuerpo">
+      <div class="v-carga" id="ventanaCarga" aria-hidden="true">Cargando…</div>
+      <iframe id="ventanaMarco" title="Juego" allow="fullscreen"></iframe>
+    </div>
   </div>
 </div>
-
-<script src="js/data.js"></script>
-<script src="js/game.js"></script>
+<script src="js/hub-data.js"></script>
+<script src="js/sala.js"></script>
+<script src="js/hub.js"></script>
 </body>
 </html>

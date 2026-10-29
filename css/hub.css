@@ -1,0 +1,127 @@
+/* =========================================================
+   Sala de cómputo · interfaz (HUD, paneles, zonas clicables)
+   1 Fuentes  2 Variables  3 Base  4 HUD  5 Escena  6 Paneles
+   7 Transición  8 Animaciones  9 Responsive
+   ========================================================= */
+/* 1 · Fuentes locales (funcionan sin internet) */
+@font-face{font-family:"Press Start 2P";src:url(../assets/fonts/press-start-2p-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Pixelify Sans";font-weight:400;src:url(../assets/fonts/pixelify-sans-latin-400-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Pixelify Sans";font-weight:600;src:url(../assets/fonts/pixelify-sans-latin-600-normal.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Pixelify Sans";font-weight:700;src:url(../assets/fonts/pixelify-sans-latin-700-normal.woff2) format("woff2");font-display:swap}
+
+/* 2 · Variables */
+:root{
+  --ponche:#E23C48; --ponche-d:#A82430; --algodon:#E99A99; --marino:#203655; --ink:#14233B;
+  --miel:#FDFAE9; --miel-d:#F4EBBF; --escarcha:#A7D6D8; --escarcha-d:#6FB0B4; --oro:#F6D26B;
+  --fondo:#E3EEF1; --fondo-punto:#CFE1E6;   /* fondo del hub: azul hielo suave, sin animación */
+  --px:'Press Start 2P',monospace; --txt:'Pixelify Sans',system-ui,sans-serif;
+}
+
+/* 3 · Base */
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--fondo);color:var(--marino);font-family:var(--txt);font-size:16px;overflow:hidden;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:6px;padding:10px 14px 12px;position:relative}
+.fondo{position:fixed;inset:0;z-index:0;background-color:var(--fondo);
+  background-image:radial-gradient(var(--fondo-punto) 2px,transparent 2.5px);background-size:24px 24px}
+body>*:not(.fondo){position:relative;z-index:1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ponche);outline-offset:2px}
+
+/* 4 · HUD superior */
+.hud{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px}
+.hud-logos{--logo-h:clamp(50px,4.4vw,72px);display:flex;align-items:center;gap:14px;min-width:0}
+.hud-logos img{height:var(--logo-h);width:auto;background:var(--miel);border:3px solid var(--ink);padding:4px 8px;box-shadow:3px 3px 0 var(--ink);image-rendering:auto;max-width:100%;object-fit:contain}
+.titulo{text-align:center}
+.etiqueta{display:inline-block;font:400 10px var(--px);background:var(--ponche);color:var(--miel);padding:5px 8px;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);animation:flota 2.4s steps(4) infinite}
+h1{font:400 clamp(16px,2.6vw,30px)/1.15 var(--px);color:var(--marino);margin-top:8px;text-shadow:3px 3px 0 var(--algodon)}
+.slogan{font:600 clamp(15px,1.8vw,20px) var(--txt);color:var(--ponche-d);margin-top:4px}
+.slogan::after{content:"_";animation:cursor 1s steps(1) infinite}
+.hud-prog{justify-self:end;display:flex;align-items:center;gap:8px;background:var(--marino);color:var(--miel);padding:8px 10px;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.mini{font:400 8px var(--px)}
+.barra{display:flex;gap:3px}
+.barra i{width:14px;height:14px;background:#4A6C9E;border:2px solid var(--ink);display:block}
+.barra i.ok{background:var(--oro);animation:pulso 1.6s steps(2) infinite}
+.num{font:400 10px var(--px);color:var(--oro)}
+
+/* 5 · Escena */
+.escenario{display:flex;align-items:center;justify-content:center;min-height:0}
+.escena{position:relative;scale:1.14;transform-origin:50% 58%;height:100%;max-width:100%;aspect-ratio:4/3;animation:entra .7s steps(6) backwards}
+#sala{width:100%;height:100%;image-rendering:pixelated;display:block}
+#zonas a{position:absolute;display:block;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+#zonas a:focus-visible{outline:none}
+.burbuja{position:absolute;transform:translate(-100%,0);max-width:36%;width:max-content;background:var(--miel);border:3px solid var(--ink);padding:7px 9px;box-shadow:3px 3px 0 var(--ink);
+  font:600 clamp(12px,1.35vw,16px)/1.2 var(--txt);color:var(--marino);pointer-events:none;animation:flota 2s steps(4) infinite}
+.burbuja::after{content:"";position:absolute;right:16px;top:-14px;border:6px solid transparent;border-bottom:8px solid var(--ink);border-top:0}
+.burbuja.cambia span{animation:escribe .35s steps(6)}
+
+/* 6 · Paneles inferiores */
+.paneles{display:grid;grid-template-columns:1.1fr 1fr 1.3fr;gap:10px}
+.panel{background:var(--miel);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:9px 11px;min-width:0;animation:sube .6s steps(5) backwards}
+.panel:nth-child(2){animation-delay:.1s}.panel:nth-child(3){animation-delay:.2s}
+.panel h2{font:400 9px var(--px);color:var(--ponche);margin-bottom:8px;letter-spacing:.5px}
+.proceso ol{list-style:none;padding:0;display:grid;gap:4px}
+.proceso li{display:flex;align-items:center;gap:8px;font:600 14px var(--txt);padding:2px 4px;transition:background .15s}
+.proceso li b{font:400 9px var(--px);background:var(--marino);color:var(--miel);min-width:22px;height:22px;display:grid;place-items:center;border:2px solid var(--ink)}
+.proceso li.act{background:var(--escarcha)}.proceso li.act b{background:var(--ponche)}
+.proceso li small{display:none;font:400 13px var(--txt);color:#4A5F7C}
+.proceso li.act small{display:inline}
+.lista ul{list-style:none;padding:0;display:grid;gap:6px}
+.lista a{display:flex;align-items:center;gap:9px;text-decoration:none;font:600 15px var(--txt);padding:6px 8px;border:3px solid var(--ink);background:#fff;box-shadow:2px 2px 0 var(--ink);transition:transform .1s steps(2)}
+.lista a:hover,.lista a.act,.lista a:focus-visible{background:var(--oro);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.lista a .ic{width:24px;height:24px;flex:none;image-rendering:pixelated}
+.lista a .est{margin-left:auto;font:400 8px var(--px);color:var(--ponche-d)}
+.lista a.hecho .est{color:#2f7d78}
+.lista a.pronto{opacity:.85}
+.detalle{background:var(--marino);color:var(--miel)}
+.detalle h2{color:var(--oro)}
+.d-nombre{font:400 12px/1.4 var(--px);margin-bottom:6px}
+.d-desc{font:400 15px/1.3 var(--txt);color:#dfe9f2;margin-bottom:8px;min-height:3.9em}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.chips span{font:400 8px var(--px);background:var(--escarcha);color:var(--ink);padding:4px 6px;border:2px solid var(--ink)}
+.jugar{display:inline-block;font:400 12px var(--px);text-decoration:none;background:var(--ponche);color:var(--miel);padding:9px 14px;border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);animation:latido 1.2s steps(2) infinite}
+.jugar:hover,.jugar:focus-visible{background:var(--oro);color:var(--ink)}
+.jugar.off{background:var(--algodon);color:var(--ink);animation:none}
+
+/* 7 · Ventana emergente (los juegos se abren como una ventana web) */
+body>.ventana-fondo{position:fixed;inset:0;z-index:50;display:flex;justify-content:center;padding:clamp(8px,2.2vw,28px);background:rgba(20,35,59,.62)}
+.ventana-fondo[hidden]{display:none}
+.ventana{flex:1 1 auto;max-width:1500px;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);background:var(--miel);border:4px solid var(--ink);box-shadow:8px 8px 0 var(--ink);animation:abre .3s steps(5) backwards}
+.v-barra{display:flex;align-items:center;gap:12px;padding:8px 10px;background:var(--marino);border-bottom:4px solid var(--ink)}
+.v-puntos{display:flex;gap:6px}
+.v-puntos i{width:12px;height:12px;border:2px solid var(--ink);background:var(--algodon);display:block}
+.v-puntos i:nth-child(2){background:var(--oro)}.v-puntos i:nth-child(3){background:var(--escarcha)}
+.v-url{flex:1;min-width:0;font:600 15px var(--txt);color:var(--ink);background:var(--miel);border:3px solid var(--ink);padding:3px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v-url::before{content:"\1F512  ";font-size:12px}
+.v-cerrar{font:400 10px var(--px);color:var(--miel);background:var(--ponche);border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);padding:8px 12px;cursor:pointer}
+.v-cerrar:hover,.v-cerrar:focus-visible{background:var(--oro);color:var(--ink)}
+.v-cerrar:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.v-cuerpo{position:relative;min-height:0;background:var(--miel)}
+.v-cuerpo iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--miel)}
+.v-carga{position:absolute;inset:0;display:grid;place-items:center;font:400 12px var(--px);color:var(--marino)}
+body.con-ventana{overflow:hidden}
+
+/* 8 · Animaciones */
+@keyframes abre{from{opacity:0;translate:0 24px}}
+@keyframes flota{50%{translate:0 -3px}}
+@keyframes cursor{50%{opacity:0}}
+@keyframes pulso{50%{filter:brightness(1.25)}}
+@keyframes latido{50%{translate:0 -2px;box-shadow:4px 6px 0 var(--ink)}}
+@keyframes entra{from{opacity:0;translate:0 20px}}
+@keyframes sube{from{opacity:0;translate:0 24px}}
+@keyframes escribe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
+
+/* 9 · Responsive y movimiento reducido */
+@media (max-width:900px){
+  body{overflow:auto;display:flex;flex-direction:column;height:auto;min-height:100%}
+  .hud{grid-template-columns:1fr;justify-items:center}.hud-prog{justify-self:center}
+  .hud-logos{--logo-h:60px;flex-wrap:wrap;justify-content:center}
+  .escena{height:auto;width:100%;scale:1}
+  .paneles{grid-template-columns:1fr}
+  body>.ventana-fondo{padding:0}.ventana{border-width:0;box-shadow:none}
+  .v-cerrar span{display:none}.v-puntos{display:none}
+  .proceso li.act small{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
