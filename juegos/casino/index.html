@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casino del saber</title>
+<link rel="icon" href="../../assets/logo-ut.png">
+<link rel="stylesheet" href="../comun/editorial.css">
+<link rel="stylesheet" href="css/casino.css">
+</head>
+<body>
+<div class="doodles" id="doodles" aria-hidden="true"></div>
+<div id="confeti" aria-hidden="true"></div>
+
+<div class="shell">
+
+  <div class="top">
+    <div class="top-left">
+      <a class="volver" data-volver href="../../index.html" title="Volver a la sala de cómputo"><span aria-hidden="true">&#9664;</span> Volver a la sala</a>
+      <img class="logo" data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+      <nav class="micro-nav" aria-label="Contexto"><span>INVESTIGACIÓN I</span><i></i><span>CASINO DEL SABER</span><i></i><span>1 JUGADOR</span></nav>
+    </div>
+    <div class="top-right">
+      <span class="micro coords">4° 26′ N · 75° 14′ O</span>
+      <span class="micro place">IBAGUÉ, TOLIMA <b class="dot" aria-hidden="true"></b></span>
+      <img class="logo" data-logo="idead" alt="IDEAD en los territorios">
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">EMPIEZAS CON <span data-pts-inicio>100</span> · META <span data-pts-meta>1000</span></div>
+      <h1 aria-label="Casino del saber">
+        <span class="h-line" aria-hidden="true"><span data-letras>CASINO</span></span>
+        <span class="h-line h-mid" aria-hidden="true"><span class="chip-del">DEL</span></span>
+        <span class="h-line" aria-hidden="true"><span data-letras data-inicio="7">SABER</span></span>
+      </h1>
+      <p>Apuesta tus puntos antes de cada pregunta y responde escribiendo una sola palabra.</p>
+      <p class="margin-note">No importa si escribes en mayúsculas, minúsculas o con espacios.</p>
+    </div>
+    <figure class="sketch" aria-hidden="true">
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#203655" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <g class="a-in" style="--d:.2s">
+            <ellipse cx="120" cy="262" rx="62" ry="18" fill="#F4C95D"/><path d="M58 262v-18c0 10 28 18 62 18s62-8 62-18v18" fill="#F4C95D"/>
+            <ellipse cx="120" cy="244" rx="62" ry="18" fill="#F4C95D"/><path d="M58 244v-18c0 10 28 18 62 18s62-8 62-18v18" fill="#F4C95D"/>
+            <ellipse cx="120" cy="226" rx="62" ry="18" fill="#F4C95D"/><path d="M58 226v-18c0 10 28 18 62 18s62-8 62-18v18" fill="#F4C95D"/>
+            <ellipse cx="120" cy="208" rx="62" ry="18" fill="#FDFAE9"/><text x="120" y="215" font-family="Anton,Impact,sans-serif" font-size="22" text-anchor="middle" fill="#C22A37" stroke="none">100</text>
+          </g>
+          <g class="a-in" style="--d:.5s"><g class="float"><g transform="rotate(-12 290 130)">
+            <rect x="238" y="78" width="104" height="104" rx="20" fill="#FFFEF7"/>
+            <circle cx="268" cy="108" r="8" fill="#E23C48"/><circle cx="312" cy="108" r="8" fill="#E23C48"/><circle cx="290" cy="130" r="8" fill="#E23C48"/><circle cx="268" cy="152" r="8" fill="#E23C48"/><circle cx="312" cy="152" r="8" fill="#E23C48"/>
+          </g></g></g>
+          <g class="a-in" style="--d:.8s"><g transform="rotate(8 320 250)">
+            <circle cx="320" cy="250" r="48" fill="#E23C48"/><circle cx="320" cy="250" r="34" fill="none" stroke="#FDFAE9" stroke-dasharray="8 6" stroke-width="3"/>
+            <text x="320" y="262" font-family="Anton,Impact,sans-serif" font-size="34" text-anchor="middle" fill="#FDFAE9" stroke="none">1000</text>
+          </g></g>
+        </g>
+        <g font-family="DM Mono, ui-monospace, monospace" font-size="11" fill="#203655" letter-spacing=".6">
+          <g class="a-in" style="--d:1.1s"><text x="30" y="300">APUESTA · RESPONDE · GANA</text></g>
+        </g>
+      </svg>
+    </figure>
+  </header>
+
+  <!-- Reglas -->
+  <section id="reglas" class="panel startscreen" aria-labelledby="reglasT">
+    <div class="big-icon" aria-hidden="true">🎰 🪙</div>
+    <h2 id="reglasT">¿Te atreves a apostar?</h2>
+    <div class="steps">
+      <div class="step"><span class="num">01</span><strong>Empiezas con <em data-pts-inicio>100</em> puntos</strong></div>
+      <div class="step"><span class="num">02</span><strong>Apuestas los puntos que quieras</strong></div>
+      <div class="step"><span class="num">03</span><strong>Aciertas: <em>duplicas tu apuesta</em>. Fallas: la pierdes</strong></div>
+      <div class="step"><span class="num">04</span><strong>Ganas con <em data-pts-meta>1000</em>. Pierdes en 0</strong></div>
+    </div>
+    <p>Cada pregunta se responde con una sola palabra que debes escribir.</p>
+    <button type="button" class="primary big" id="btnEntrar">ENTRAR AL CASINO →</button>
+  </section>
+
+  <!-- Mesa -->
+  <div id="mesa" class="stack" hidden>
+    <section class="panel">
+      <div class="money"><span>TUS PUNTOS</span><span id="rondaTxt">RONDA 1</span></div>
+      <div class="score"><span class="coin" aria-hidden="true">🪙</span><b id="puntos" aria-live="polite">100</b></div>
+      <div class="progress" aria-hidden="true"><span id="metaBarra"></span></div>
+      <div class="money escala" aria-hidden="true"><span>0</span><span id="metaTxt">META 1000</span></div>
+      <div class="historial" id="historial" role="img" aria-label="Resultado de las rondas"></div>
+    </section>
+
+    <!-- Fase: apuesta -->
+    <section class="panel alt fase" id="faseApuesta">
+      <p class="proxima"><span class="qnum" id="chipEtapa"></span> <span class="nivel" id="chipNivel"></span> <span class="small">Próxima pregunta</span></p>
+      <h2 class="sec-title">¿Cuánto apuestas?</h2>
+      <div class="apuesta-valor">
+        <button type="button" class="secondary redondo" id="btnMenos" aria-label="Bajar la apuesta">&minus;</button>
+        <output id="apuestaTxt" for="apuesta">10</output>
+        <button type="button" class="secondary redondo" id="btnMas" aria-label="Subir la apuesta">+</button>
+      </div>
+      <input type="range" id="apuesta" min="10" max="100" step="10" value="10" aria-label="Puntos a apostar">
+      <div class="rapidas" id="rapidas">
+        <button type="button" class="secondary" data-q="min">Mínimo</button>
+        <button type="button" class="secondary" data-q="cuarto">25%</button>
+        <button type="button" class="secondary" data-q="mitad">Mitad</button>
+        <button type="button" class="secondary" data-q="todo">Todo</button>
+      </div>
+      <p class="prevista"><span class="gana">Si aciertas: <b id="pvGana"></b></span><span class="pierde">Si fallas: <b id="pvPierde"></b></span></p>
+      <button type="button" class="primary big" id="btnApostar">APOSTAR →</button>
+    </section>
+
+    <!-- Fase: pregunta (respuesta escrita) -->
+    <section class="panel alt fase" id="fasePreg" hidden>
+      <p class="proxima">Apostaste <b id="qApuesta"></b> puntos · <span class="qnum" id="qEtapa"></span> <span class="nivel" id="qNivel"></span></p>
+      <p class="question-instruction">ESCRIBE UNA SOLA PALABRA</p>
+      <h2 class="question" id="qTexto" tabindex="-1"></h2>
+      <form id="formResp" autocomplete="off" novalidate>
+        <label class="sr-only" for="resp">Tu respuesta (una palabra)</label>
+        <input class="field respuesta" id="resp" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Escribe aquí tu respuesta">
+        <p class="small" id="pistaLetras"></p>
+        <div class="controls"><button type="submit" class="primary big" id="btnResp">RESPONDER →</button></div>
+      </form>
+    </section>
+
+    <!-- Fase: resultado -->
+    <section class="panel fase resultado" id="faseRes" hidden>
+      <div class="answer-status show" id="resEstado" role="status" tabindex="-1"></div>
+      <p class="delta" id="resDelta"></p>
+      <div class="feedback" id="resFeed"></div>
+      <div class="controls"><button type="button" class="primary big" id="btnSig">SIGUIENTE RONDA →</button></div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <img data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+    <img data-logo="idead" alt="IDEAD en los territorios">
+    <span>Investigadores en acción · Ingeniería de Sistemas · Universidad del Tolima</span>
+  </div>
+</div>
+
+<!-- Final: felicitación con los logos -->
+<div class="modal" id="modalFin" role="dialog" aria-modal="true" aria-labelledby="finTitulo">
+  <div class="panel felicitacion" id="boxFin">
+    <div class="big-icon" id="finIcono" aria-hidden="true">🏆</div>
+    <h2 id="finTitulo"></h2>
+    <p id="finSub"></p>
+    <div class="stats" id="finStats"></div>
+    <div class="fc-logos">
+      <img data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+      <img data-logo="idead" alt="IDEAD en los territorios">
+    </div>
+    <p class="fc-note">¡Gracias por jugar! · Universidad del Tolima · IDEAD</p>
+    <div class="controls">
+      <button type="button" class="primary" id="btnOtra">Jugar de nuevo</button>
+      <a class="secondary" data-volver href="../../index.html">Volver a la sala</a>
+    </div>
+  </div>
+</div>
+
+<script src="../comun/comun.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

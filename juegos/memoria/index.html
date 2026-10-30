@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Memoria de la investigación</title>
+<link rel="icon" href="../../assets/logo-ut.png">
+<link rel="stylesheet" href="../comun/editorial.css">
+<link rel="stylesheet" href="css/memoria.css">
+</head>
+<body>
+<div class="doodles" id="doodles" aria-hidden="true"></div>
+<div id="confeti" aria-hidden="true"></div>
+
+<div class="shell">
+
+  <div class="top">
+    <div class="top-left">
+      <a class="volver" data-volver href="../../index.html" title="Volver a la sala de cómputo"><span aria-hidden="true">&#9664;</span> Volver a la sala</a>
+      <img class="logo" data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+      <nav class="micro-nav" aria-label="Contexto"><span>INVESTIGACIÓN I</span><i></i><span>JUEGO DE MEMORIA</span><i></i><span>1 A 3 JUGADORES</span></nav>
+    </div>
+    <div class="top-right">
+      <span class="micro coords">4° 26′ N · 75° 14′ O</span>
+      <span class="micro place">IBAGUÉ, TOLIMA <b class="dot" aria-hidden="true"></b></span>
+      <img class="logo" data-logo="idead" alt="IDEAD en los territorios">
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="hero-text">
+      <div class="eyebrow">DIEZ PAREJAS · DIEZ PREGUNTAS</div>
+      <h1 aria-label="Memoria de la investigación">
+        <span class="h-line" aria-hidden="true"><span data-letras>MEMORIA</span></span>
+        <span class="h-line h-mid" aria-hidden="true"><span class="chip-del">DE LA</span></span>
+        <span class="h-line" aria-hidden="true"><span data-letras data-inicio="9">INVESTIGACIÓN</span></span>
+      </h1>
+      <p>Voltea las cartas, encuentra las parejas y responde la pregunta que se abre con cada una.</p>
+      <p class="margin-note">Juega solo, en dúo o en trío.</p>
+    </div>
+    <figure class="sketch" aria-hidden="true">
+      <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#203655" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <g class="a-in" style="--d:.2s"><g transform="rotate(-12 110 170)">
+            <rect x="50" y="70" width="130" height="180" rx="16" fill="#203655"/>
+            <path d="M66 90l96 140M66 130l96 100M90 90l72 100M66 170l56 60" stroke="#FDFAE9" stroke-opacity=".25" stroke-width="2"/>
+            <text x="115" y="188" font-family="Anton,Impact,sans-serif" font-size="78" fill="#E99A99" stroke="none" text-anchor="middle">?</text>
+          </g></g>
+          <g class="a-in" style="--d:.45s"><g class="float"><g transform="rotate(9 270 160)">
+            <rect x="205" y="60" width="130" height="180" rx="16" fill="#FFFEF7"/>
+            <circle cx="270" cy="140" r="42" fill="#A7D6D8"/>
+            <text x="270" y="158" font-family="sans-serif" font-size="54" text-anchor="middle" stroke="none">🔬</text>
+            <path d="M225 80h30M285 220h30" stroke-width="2"/>
+          </g></g></g>
+          <g class="a-in" style="--d:.7s"><g transform="rotate(-5 340 250)">
+            <rect x="300" y="196" width="92" height="104" rx="14" fill="#F5CFCD"/>
+            <text x="346" y="262" font-family="sans-serif" font-size="46" text-anchor="middle" stroke="none">🎓</text>
+          </g></g>
+        </g>
+        <g font-family="DM Mono, ui-monospace, monospace" font-size="11" fill="#203655" letter-spacing=".6">
+          <g class="a-in" style="--d:1s"><text x="30" y="296">PAREJA = PREGUNTA</text></g>
+        </g>
+      </svg>
+    </figure>
+  </header>
+
+  <!-- Inicio: cuántas personas juegan -->
+  <section id="inicio" class="panel startscreen" aria-labelledby="inicioT">
+    <div class="big-icon" aria-hidden="true">🃏 🧠</div>
+    <h2 id="inicioT">¿Cuántas personas juegan?</h2>
+    <div class="chips-row" id="cuantos" role="radiogroup" aria-label="Número de jugadores"></div>
+    <div class="nombres" id="nombres"></div>
+    <p>Voltea dos cartas. Si son iguales, se abre una pregunta: si se responde bien, sumas 100 puntos.</p>
+    <button type="button" class="primary big" id="btnEmpezar">COMENZAR →</button>
+  </section>
+
+  <!-- Juego -->
+  <div id="juego" class="stack" hidden>
+    <section class="panel">
+      <div class="players" id="jugadores"></div>
+      <div class="money"><span id="turno" role="status" aria-live="polite"></span><span id="parejasTxt"></span></div>
+      <div class="progress" aria-hidden="true"><span id="prog"></span></div>
+      <div class="tablero" id="tablero" aria-label="Tablero de cartas"></div>
+      <div class="controls center">
+        <button type="button" class="secondary" id="btnReiniciar">Reiniciar juego</button>
+        <button type="button" class="secondary" id="btnCambiar">Cambiar jugadores</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <img data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+    <img data-logo="idead" alt="IDEAD en los territorios">
+    <span>Investigadores en acción · Ingeniería de Sistemas · Universidad del Tolima</span>
+  </div>
+</div>
+
+<!-- Pregunta -->
+<div class="modal" id="modalPreg" role="dialog" aria-modal="true" aria-labelledby="qTexto">
+  <div class="panel" id="boxPreg">
+    <div class="qhead"><span class="qnum" id="qNum"></span><span class="quien" id="qQuien"></span></div>
+    <p class="question" id="qTexto"></p>
+    <div class="feedback ok" id="qResp" hidden></div>
+    <p class="small" id="qPista">Piensa tu respuesta y luego pulsa «Ver respuesta».</p>
+    <div class="controls">
+      <button type="button" class="secondary" id="btnVer">Ver respuesta</button>
+      <button type="button" class="primary ok" id="btnBien" hidden>Correcta · +100</button>
+      <button type="button" class="primary no" id="btnMal" hidden>Incorrecta</button>
+    </div>
+  </div>
+</div>
+
+<!-- Final: felicitación con los logos -->
+<div class="modal" id="modalFin" role="dialog" aria-modal="true" aria-labelledby="finTitulo">
+  <div class="panel felicitacion" id="boxFin">
+    <div class="big-icon" aria-hidden="true">🏆</div>
+    <h2 id="finTitulo"></h2>
+    <p id="finSub"></p>
+    <div class="lista" id="finLista"></div>
+    <div class="fc-logos">
+      <img data-logo="conocimiento" alt="Universidad del Tolima · Conocimiento que transforma">
+      <img data-logo="idead" alt="IDEAD en los territorios">
+    </div>
+    <p class="fc-note">¡Gracias por jugar! · Universidad del Tolima · IDEAD</p>
+    <div class="controls">
+      <button type="button" class="primary" id="btnOtra">Jugar de nuevo</button>
+      <a class="secondary" data-volver href="../../index.html">Volver a la sala</a>
+    </div>
+  </div>
+</div>
+
+<script src="../comun/comun.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

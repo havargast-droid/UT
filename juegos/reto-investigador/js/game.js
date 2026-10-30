@@ -522,6 +522,10 @@ function setup(){
     const b = e.target.closest("button.piece[data-slot]");
     if(b) selectPuzzlePiece(Number(b.dataset.slot));
   });
+  $("btnCerrarMural").addEventListener("click", () => {
+    if(document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    $("finalImage").classList.remove("show");
+  });
   $("finalImage").addEventListener("click", e => {
     if(e.target.closest("figcaption")) return;
     openFinalMuralFullscreen();

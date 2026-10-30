@@ -20,6 +20,9 @@
 /* 3 · Base */
 *{box-sizing:border-box;margin:0}
 html,body{height:100%}
+html{}
+/* Pixelify Sans une "fi", "fu"… en un solo glifo raro: se desactivan las ligaduras en todo el texto */
+*,*::before,*::after{font-variant-ligatures:none!important;font-feature-settings:"liga" 0,"calt" 0!important}
 body{background:var(--fondo);color:var(--marino);font-family:var(--txt);font-size:16px;overflow:hidden;
   display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:6px;padding:10px 14px 12px;position:relative}
 .fondo{position:fixed;inset:0;z-index:0;background-color:var(--fondo);

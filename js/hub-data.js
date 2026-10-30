@@ -29,18 +29,18 @@ const SALA = {
     "Primero se planifica, luego se ejecuta."
   ],
 
-  // Los tres juegos. "estacion" enlaza con la máquina de la sala: pc1 · pc2 · arcade
+  // Los tres juegos. "estacion" enlaza con la máquina de la sala: pc1 · pc2 · arcade (la máquina del fondo, hoy el casino)
   juegos: [
     { id:"reto", estacion:"pc1", nombre:"El reto del investigador", tipo:"Quiz + rompecabezas", icono:"puzzle",
       desc:"Responde una pregunta en cada etapa, gana las piezas del rompecabezas y ordena las pistas para revelar el mural del proceso de investigación.",
       chips:["5 etapas","Rompecabezas"], url:"juegos/reto-investigador/index.html", disponible:true },
 
     { id:"memoria", estacion:"pc2", nombre:"Memoria de la investigación", tipo:"Parejas + preguntas", icono:"cartas",
-      desc:"Voltea las cartas y encuentra las parejas. Cada pareja abre una pregunta sobre el proceso de investigación para tu equipo.",
-      chips:["3 equipos","Parejas"], url:"juegos/proximamente.html?j=memoria", disponible:false },
+      desc:"Voltea las cartas y encuentra las parejas. Cada pareja abre una pregunta sobre el proceso de investigación. Juega solo, en dúo o en trío.",
+      chips:["1 a 3 jugadores","Parejas"], url:"juegos/memoria/index.html", disponible:true },
 
-    { id:"arcade", estacion:"arcade", nombre:"Arcade del método", tipo:"Reflejos", icono:"joystick",
-      desc:"Atrapa al vuelo los conceptos y llévalos a la etapa correcta antes de que caigan. ¡Velocidad y método!",
-      chips:["Reflejos","Un jugador"], url:"juegos/proximamente.html?j=arcade", disponible:false }
+    { id:"casino", estacion:"arcade", nombre:"Casino del saber", tipo:"Apuestas + respuesta escrita", icono:"casino",
+      desc:"Empiezas con 100 puntos. Apuesta antes de cada pregunta y responde escribiendo una sola palabra: si aciertas, duplicas tu apuesta; si fallas, la pierdes. ¡Llega a 1000!",
+      chips:["1 jugador","Apuestas"], url:"juegos/casino/index.html", disponible:true }
   ]
 };

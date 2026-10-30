@@ -1,0 +1,55 @@
+/* Casino del saber · estilo cuaderno editorial (usa ../comun/editorial.css) */
+.fase{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center;animation:subir .4s backwards}
+.fase .sec-title{margin:0}
+.steps+p{margin-top:0}
+
+/* Marcador */
+.score{display:flex;align-items:center;gap:14px;margin:0 0 14px}
+.score .coin{font-size:clamp(2rem,5vw,3.2rem);line-height:1}
+.score b{font-family:var(--display);font-weight:400;font-size:clamp(3.4rem,10vw,6rem);line-height:1;letter-spacing:.01em;color:var(--ink)}
+.score.sube b{animation:correctPop .5s}
+.progress{position:relative}
+.progress::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1.5px),rgba(32,54,85,.55) calc(10% - 1.5px) 10%);pointer-events:none}
+.escala{margin:8px 0 0}
+.historial{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px;min-height:16px}
+.historial i{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--ink);display:block}
+.historial i.si{background:var(--escarcha)}
+.historial i.no{background:var(--ponche)}
+
+/* Apuesta */
+.proxima{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:0}
+.nivel{display:inline-flex;gap:4px}
+.nivel i{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink);background:#fff;display:block}
+.nivel i.on{background:var(--oro)}
+.apuesta-valor{display:flex;align-items:center;gap:14px}
+.apuesta-valor output{min-width:170px;font-family:var(--display);font-size:clamp(2.6rem,7vw,3.8rem);line-height:1.1;background:#fff;border:1.5px solid var(--ink);border-radius:20px;padding:6px 18px;box-shadow:4px 4px 0 var(--ink)}
+.redondo{width:54px;height:54px;padding:0;font-size:1.6rem;line-height:1}
+#apuesta{width:min(480px,100%);height:30px;-webkit-appearance:none;appearance:none;background:transparent}
+#apuesta::-webkit-slider-runnable-track{height:12px;background:#fff;border:1.5px solid var(--ink);border-radius:99px}
+#apuesta::-moz-range-track{height:8px;background:#fff;border:1.5px solid var(--ink);border-radius:99px}
+#apuesta::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;margin-top:-10px;border-radius:50%;background:var(--ponche);border:1.5px solid var(--ink);box-shadow:2px 2px 0 var(--ink)}
+#apuesta::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--ponche);border:1.5px solid var(--ink)}
+.rapidas{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.rapidas .secondary{padding:9px 18px;font-size:.9rem}
+.prevista{display:flex;gap:10px 22px;flex-wrap:wrap;justify-content:center;margin:0;font-weight:600}
+.gana b{color:var(--verde-d)}.pierde b{color:var(--ponche-d)}
+
+/* Pregunta */
+#fasePreg .question{margin:0;max-width:760px}
+#fasePreg .question-instruction{margin:0}
+#formResp{display:flex;flex-direction:column;align-items:center;gap:10px;width:min(520px,100%)}
+.respuesta{font-size:1.5rem;text-align:center;font-weight:600;letter-spacing:.02em;box-shadow:4px 4px 0 var(--escarcha)}
+.respuesta:disabled{opacity:.7}
+#formResp .controls{margin-top:6px;justify-content:center}
+#formResp .small{margin:0}
+
+/* Resultado */
+.resultado .answer-status{width:100%;max-width:620px;font-size:1.15rem;margin:0}
+.resultado .feedback{width:100%;max-width:620px;text-align:left;margin:0}
+.resultado .controls{margin-top:6px}
+.delta{font-family:var(--display);font-size:clamp(2.6rem,8vw,4.4rem);line-height:1;margin:0}
+.resultado.bien .delta{color:var(--verde-d)}
+.resultado.mal .delta{color:var(--ponche-d)}
+.respuesta.mal{animation:shake .45s;border-color:var(--ponche-d)}
+
+@media (max-width:560px){.redondo{width:46px;height:46px}.apuesta-valor output{min-width:120px}}
